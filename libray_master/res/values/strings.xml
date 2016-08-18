@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="unknow_version">unknow version</string>
+    <string name="app_version_code">app version code</string>
+    <string name="app_version_name">app version name</string>
+    <string name="os_version_code">os version code</string>
+    <string name="os_version_name">os version name</string>
+    <string name="os_display_name">os display name</string>
+    <string name="brand_info">brand info</string>
+    <string name="product_info">product info</string>
+    <string name="model_info">model info</string>
+    <string name="manufacturer_info">manufacturer info</string>
+
+    <string name="cube_ptr_pull_up_loading_more">上拉加载更多</string>
+    <string name="cube_ptr_release_up_loading_more">释放加载更多</string>
+
+
+
+    <string name="cube_ptr_pull_down">下拉</string>
+    <string name="cube_ptr_pull_down_to_refresh">下拉刷新</string>
+    <string name="cube_ptr_release_to_refresh">释放刷新</string>
+    <string name="cube_ptr_refreshing">加载中...</string>
+    <string name="cube_ptr_refresh_complete">更新完成.</string>
+
+    <string name="cube_ptr_last_update">上次更新:&#160;</string>
+    <string name="cube_ptr_seconds_ago">&#160;秒之前</string>
+    <string name="cube_ptr_minutes_ago">&#160;分钟之前</string>
+    <string name="cube_ptr_hours_ago">&#160;小时之前</string>
+</resources>

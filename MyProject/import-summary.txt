@@ -1,0 +1,66 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .DS_Store
+* .gitignore
+* .idea/
+* .idea/compiler.xml
+* .idea/copyright/
+* .idea/copyright/profiles_settings.xml
+* .idea/encodings.xml
+* .idea/libraries/
+* .idea/libraries/lib.xml
+* .idea/misc.xml
+* .idea/modules.xml
+* .idea/vcs.xml
+* .idea/workspace.xml
+* ant.properties
+* build.xml
+* lib/
+* lib/android-support-v4.jar
+* lib/android-support-v7-recyclerview.jar
+* lib/butterknife-7.0.1.jar
+* lib/glide-3.7.0.jar
+* lib/gson-2.6.2.jar
+* lib/next-android-inputs-1.5.4.jar
+* lib/nineoldandroids-2.4.0.jar
+* lib/okhttp-3.2.0.jar
+* lib/okhttputils-1.6.6.jar
+* lib/okio-1.6.0.jar
+* lib/org.apache.http.legacy.jar
+* lib/pgyer_sdk_2.4.1.jar
+* lib/sugar-1.5.jar
+* lib/sun.misc.BASE64Decoder.jar
+* libray_master.iml
+* proguard-project.txt
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => libray_master/src/main/AndroidManifest.xml
+* res/ => libray_master/src/main/res/
+* src/ => libray_master/src/main/java/
+* src/com/.DS_Store => libray_master/src/main/resources/com/.DS_Store
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

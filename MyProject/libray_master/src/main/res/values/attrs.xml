@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="wheelsAttrs">
+        <attr name="wheeltextsize" format="dimension" />
+        <attr name="wheeltextpadding" format="dimension" />
+
+        <attr name="wheeltextcolor" format="reference" />
+        <attr name="wheelselecttextcolor" format="reference" />
+        <attr name="wheelselectLineColor" format="reference" />
+        <attr name="wheelallLineColor" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundCornerProgress">
+        <attr name="rcReverse" format="boolean" />
+        <attr name="rcProgress" format="float" />
+        <attr name="rcBackgroundPadding" format="dimension" />
+        <attr name="rcBackgroundRadius" format="dimension" />
+        <attr name="rcMax" format="float" />
+        <attr name="rcIconSrc" format="integer" />
+        <attr name="rcIconSize" format="dimension" />
+        <attr name="rcIconPadding" format="dimension" />
+        <attr name="rcHeaderColor" format="color" />
+        <attr name="rcProgressColor" format="color" />
+        <attr name="rcBackgroundColor" format="color" />
+        <attr name="rcTextProgressColor" format="color" />
+        <attr name="rcTextProgress" format="string" />
+        <attr name="rcTextProgressUnit" format="string" />
+        <attr name="rcTextProgressSize" format="dimension" />
+        <attr name="rcTextProgressWidth" format="dimension" />
+        <attr name="rcTextProgressPadding" format="dimension" />
+        <attr name="rcAutoTextChange" format="boolean" />
+        <attr name="rcSecondaryProgress" format="float" />
+        <attr name="rcSecondaryProgressColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="AutoScaleTextView">
+        <attr name="minTextSize" format="dimension" />
+    </declare-styleable>
+
+
+    <declare-styleable name="BGAMoocStyleRefreshView">
+        <attr name="mv_ultimateColor" format="reference|color"/>
+        <attr name="mv_originalImg" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="BGASwipeItemLayout">
+        <attr name="bga_sil_swipeDirection" format="enum">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+        <attr name="bga_sil_bottomMode" format="enum">
+            <enum name="pullOut" value="0" />
+            <enum name="layDown" value="1" />
+        </attr>
+        <attr name="bga_sil_springDistance" format="dimension" />
+        <attr name="bga_sil_swipeAble" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="VelocimeterView">
+        <attr name="inside_progress_color"
+              format="color"/>
+        <attr name="external_progress_color"
+              format="color"/>
+        <attr name="progress_blur_color"
+              format="color"/>
+        <attr name="bottom_velocimeter_color"
+              format="color"/>
+        <attr name="internal_velocimeter_color"
+              format="color"/>
+        <attr name="needle_color"
+              format="color"/>
+        <attr name="needle_blur_color"
+              format="color"/>
+        <attr name="digital_number_color"
+              format="color"/>
+        <attr name="digital_number_blur_color"
+              format="color"/>
+        <attr name="max"
+              format="integer"/>
+        <attr name="units"
+              format="string"/>
+        <attr name="show_bottom_bar"
+              format="boolean"/>
+
+    </declare-styleable>
+
+
+    <declare-styleable name="RippleView">
+        <attr name="rv_alpha" format="integer" />
+        <attr name="rv_framerate" format="integer"/>
+        <attr name="rv_rippleDuration" format="integer"/>
+        <attr name="rv_zoomDuration" format="integer" />
+        <attr name="rv_color" format="color" />
+        <attr name="rv_centered" format="boolean" />
+        <attr name="rv_type" format="enum">
+            <enum name="simpleRipple" value="0"/>
+            <enum name="doubleRipple" value="1"/>
+            <enum name="rectangle" value="2" />
+        </attr>
+        <attr name="rv_ripplePadding" format="dimension" />
+        <attr name="rv_zoom" format="boolean" />
+        <attr name="rv_zoomScale" format="float" />
+
+    </declare-styleable>
+
+    <declare-styleable name="PercentLayout_Layout">
+        <attr name="layout_widthPercent" format="fraction"/>
+        <attr name="layout_heightPercent" format="fraction"/>
+        <attr name="layout_marginPercent" format="fraction"/>
+        <attr name="layout_marginLeftPercent" format="fraction"/>
+        <attr name="layout_marginTopPercent" format="fraction"/>
+        <attr name="layout_marginRightPercent" format="fraction"/>
+        <attr name="layout_marginBottomPercent" format="fraction"/>
+        <attr name="layout_marginStartPercent" format="fraction"/>
+        <attr name="layout_marginEndPercent" format="fraction"/>
+    </declare-styleable>
+
+    <declare-styleable name="SegmentControl">
+        <attr name="cornerRadius" format="dimension|reference" />
+        <attr name="colors" format="color|reference" />
+        <attr name="texts" format="string|reference" />
+        <attr name="android:textSize" />
+        <attr name="direction" format="enum">
+            <enum name="horizon" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+        <attr name="gaps" format="dimension|reference" />
+        <attr name="horizonGap" format="dimension|reference" />
+        <attr name="verticalGap" format="dimension|reference" />
+    </declare-styleable>
+
+
+    <declare-styleable name="MultipleSelectionButton">
+        <attr name="ascv_unselectedTextColor" format="reference"/>
+        <attr name="ascv_unselectedColor" format="reference"/>
+        <attr name="ascv_selectedColor" format="reference"/>
+        <attr name="ascv_selectedTextColor" format="reference"/>
+        <attr name="ascv_items" format="reference"/>
+        <attr name="ascv_values" format="reference"/>
+        <attr name="ascv_equalWidth" format="boolean"/>
+        <attr name="ascv_stretch" format="boolean"/>
+        <attr name="ascv_defaultSelection" format="integer"/>
+        <attr name="ascv_identifier" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="StickyListHeadersListView">
+        <attr name="stickyListHeadersListViewStyle" format="reference"/>
+
+        <!-- View attributes -->
+        <attr name="android:clipToPadding" />
+        <attr name="android:scrollbars" />
+        <attr name="android:overScrollMode" />
+        <attr name="android:padding" />
+        <attr name="android:paddingLeft" />
+        <attr name="android:paddingTop" />
+        <attr name="android:paddingRight" />
+        <attr name="android:paddingBottom" />
+
+        <!-- ListView attributes -->
+        <attr name="android:fadingEdgeLength" />
+        <attr name="android:requiresFadingEdge" />
+        <attr name="android:cacheColorHint" />
+        <attr name="android:choiceMode" />
+        <attr name="android:drawSelectorOnTop" />
+        <attr name="android:fastScrollEnabled" />
+        <attr name="android:fastScrollAlwaysVisible" />
+        <attr name="android:listSelector" />
+        <attr name="android:scrollingCache" />
+        <attr name="android:scrollbarStyle" />
+        <attr name="android:divider" />
+        <attr name="android:dividerHeight" />
+        <attr name="android:transcriptMode" />
+        <attr name="android:stackFromBottom" />
+
+        <!-- StickyListHeaders attributes -->
+        <attr name="hasStickyHeaders" format="boolean" />
+        <attr name="isDrawingListUnderStickyHeader" format="boolean" />
+    </declare-styleable>
+
+
+
+    <declare-styleable name="CircularImageView">
+
+        <!-- Specifies whether or not to draw a circular border around the image. -->
+        <attr name="border" format="boolean"></attr>
+        <!-- Specifies the color of the border draw around the image. (if enabled) -->
+        <attr name="border_color" format="color"></attr>
+        <!-- Makes the border this pixels wide. (if enabled) -->
+        <attr name="border_width" format="dimension"></attr>
+        <!-- Specifies whether or not to draw a selector on this view upon touch events. -->
+        <attr name="selector" format="boolean"></attr>
+        <!-- Specifies the color of the selector draw on top of the image upon touch events. (if enabled) -->
+        <attr name="selector_color" format="color"></attr>
+        <!-- Specifies the color of the selector stroke drawn around the image upon touch events. Be sure to provide some opacity. (if enabled) -->
+        <attr name="selector_stroke_color" format="color"></attr>
+        <!-- Makes the selector stroke drawn around the image upon touch events this pixels wide. (if enabled) -->
+        <attr name="selector_stroke_width" format="dimension"></attr>
+        <!-- Specifies whether or not to draw a shadow around your circular image. -->
+        <attr name="shadow" format="boolean"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="CustomCircularImageViewTheme">
+        <attr name="circularImageViewStyle" format="reference" />
+    </declare-styleable>
+
+
+    <declare-styleable name="PullToZoomView">
+        <attr name="headerView" format="reference" />
+        <attr name="contentView" format="reference" />
+        <attr name="zoomView" format="reference" />
+        <attr name="isHeaderParallax" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ConvenientBanner">
+        <attr name="canLoop" format="boolean" />
+    </declare-styleable>
+
+
+
+
+    <!--倒计时-->
+    <declare-styleable name="CountdownView">
+        <attr name="isHideTimeBackground" format="boolean" />
+        <attr name="isShowTimeBgDivisionLine" format="boolean" />
+        <attr name="timeBgDivisionLineColor" format="color" />
+        <attr name="timeBgDivisionLineSize" format="dimension" />
+        <attr name="timeBgColor" format="color" />
+        <attr name="timeBgSize" format="dimension" />
+        <attr name="timeBgRadius" format="dimension" />
+
+        <attr name="isTimeTextBold" format="boolean" />
+        <attr name="timeTextSize" format="dimension" />
+        <attr name="timeTextColor" format="color" />
+        <attr name="isShowDay" format="boolean" />
+        <attr name="isShowHour" format="boolean" />
+        <attr name="isShowMinute" format="boolean" />
+        <attr name="isShowSecond" format="boolean" />
+        <attr name="isShowMillisecond" format="boolean" />
+
+        <attr name="isSuffixTextBold" format="boolean" />
+        <attr name="suffixTextSize" format="dimension" />
+        <attr name="suffixTextColor" format="color" />
+        <attr name="suffix" format="string" />
+        <attr name="suffixDay" format="string" />
+        <attr name="suffixHour" format="string" />
+        <attr name="suffixMinute" format="string" />
+        <attr name="suffixSecond" format="string" />
+        <attr name="suffixMillisecond" format="string" />
+        <attr name="suffixGravity">
+            <enum name="top" value="0" />
+            <enum name="center" value="1" />
+            <enum name="bottom" value="2" />
+        </attr>
+        <attr name="suffixLRMargin" format="dimension" />
+        <attr name="suffixDayLeftMargin" format="dimension" />
+        <attr name="suffixDayRightMargin" format="dimension" />
+        <attr name="suffixHourLeftMargin" format="dimension" />
+        <attr name="suffixHourRightMargin" format="dimension" />
+        <attr name="suffixMinuteLeftMargin" format="dimension" />
+        <attr name="suffixMinuteRightMargin" format="dimension" />
+        <attr name="suffixSecondLeftMargin" format="dimension" />
+        <attr name="suffixSecondRightMargin" format="dimension" />
+        <attr name="suffixMillisecondLeftMargin" format="dimension" />
+    </declare-styleable>
+
+    <!--下拉列表-->
+    <declare-styleable name="NiceSpinner">
+        <attr name="arrowTint" format="color" />
+        <attr name="hideArrow" format="boolean" />
+        <attr name="backgroundSelector" format="reference"/>
+        <attr name="textTint" format="color"/>
+    </declare-styleable>
+
+
+    <attr name="fl_theme" format="reference" />
+    <attr name="fl_fontFamily" format="string" />
+    <attr name="fl_fontWeight" format="string" />
+    <attr name="fl_fontExtension" format="string" />
+    <attr name="fl_borderWidth" format="dimension" />
+    <attr name="fl_size" format="dimension" />
+    <attr name="fl_dotMargin" format="dimension" />
+    <attr name="fl_cornerRadius" format="dimension" />
+    <declare-styleable name="fl_FlatRadioButton">
+        <attr name="fl_theme" />
+        <attr name="fl_fontFamily" />
+        <attr name="fl_fontWeight" />
+        <attr name="fl_fontExtension" />
+        <attr name="fl_borderWidth" />
+        <attr name="fl_size" />
+        <attr name="fl_dotMargin" />
+    </declare-styleable>
+
+    <declare-styleable name="fl_FlatCheckBox">
+        <attr name="fl_theme" />
+        <attr name="fl_fontFamily" />
+        <attr name="fl_fontWeight" />
+        <attr name="fl_fontExtension" />
+        <attr name="fl_cornerRadius" />
+        <attr name="fl_size" />
+        <attr name="fl_dotMargin" />
+    </declare-styleable>
+
+    <declare-styleable name="SwipeToLoadLayout">
+        <attr name="refresh_enabled" format="boolean" />
+        <attr name="load_more_enabled" format="boolean" />
+
+        <attr name="swipe_style" format="enum">
+            <enum name="classic" value="0" />
+            <enum name="above" value="1" />
+            <enum name="blew" value="2" />
+            <enum name="scale" value="3" />
+        </attr>
+
+        <attr name="drag_ratio" format="float" />
+
+        <attr name="refresh_trigger_offset" format="dimension" />
+        <attr name="load_more_trigger_offset" format="dimension" />
+        <attr name="refresh_final_drag_offset" format="dimension" />
+        <attr name="load_more_final_drag_offset" format="dimension" />
+
+        <attr name="swiping_to_refresh_to_default_scrolling_duration" format="integer" />
+        <attr name="release_to_refreshing_scrolling_duration" format="integer" />
+        <attr name="refresh_complete_delay_duration" format="integer" />
+        <attr name="refresh_complete_to_default_scrolling_duration" format="integer" />
+        <attr name="default_to_refreshing_scrolling_duration" format="integer" />
+        <attr name="swiping_to_load_more_to_default_scrolling_duration" format="integer" />
+        <attr name="release_to_loading_more_scrolling_duration" format="integer" />
+        <attr name="load_more_complete_delay_duration" format="integer" />
+        <attr name="load_more_complete_to_default_scrolling_duration" format="integer" />
+        <attr name="default_to_loading_more_scrolling_duration" format="integer" />
+    </declare-styleable>
+
+</resources>
