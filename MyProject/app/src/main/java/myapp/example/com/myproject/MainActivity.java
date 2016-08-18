@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
         final AndroidNextInputs inputs = new AndroidNextInputs(this);
         inputs.add(tv, StaticScheme.ChineseMobile());
         if(!inputs.test()){
-
+             //
         }
 
        // imageview= (ImageView) findViewById(R.id.image);
