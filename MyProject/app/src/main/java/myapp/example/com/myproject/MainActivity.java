@@ -25,6 +25,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.content_main);
         ButterKnife.bind(this);
 
+       // OkHttpUtils.get("httpwww.baidu.com");
+
 
         final AndroidNextInputs inputs = new AndroidNextInputs(this);
         inputs.add(tv, StaticScheme.ChineseMobile());
