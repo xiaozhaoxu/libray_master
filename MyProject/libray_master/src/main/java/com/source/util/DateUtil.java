@@ -15,16 +15,33 @@ import java.util.*;
  */
 public class DateUtil {
 
-    private static final DateFormat FORMATOR = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public static final DateFormat FORMATOR = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public static final DateFormat FORDATE_HOUR = new SimpleDateFormat("MM-dd HH:mm");
-    private static final DateFormat FORMATOR_YMD = new SimpleDateFormat("yyyy-MM-dd");
-    private static final DateFormat FORMATOR_YMD_XX = new SimpleDateFormat("yyyy/MM/dd");
-    private static final DateFormat FORMATOR_SIMPLE = new SimpleDateFormat("yyyyMMddHHmmss");
+    public static final DateFormat FORMATOR_YMD = new SimpleDateFormat("yyyy-MM-dd");
+    public static final DateFormat FORMATOR_YMD_XX = new SimpleDateFormat("yyyy/MM/dd");
+    public static final DateFormat FORMATOR_SIMPLE = new SimpleDateFormat("yyyyMMddHHmmss");
     public static final DateFormat FORMATOR_HMS = new SimpleDateFormat("HH:mm:ss");
-    private static final DateFormat FORMATOR_HOUR_MINUTE = new SimpleDateFormat("HH:mm");
-    private static final DateFormat FORMATOR_MONTH_DATE = new SimpleDateFormat("MM月dd日");
-    private static final DateFormat FORMATOR_E_CN = new SimpleDateFormat("E", Locale.CHINA);
+    public static final DateFormat FORMATOR_HOUR_MINUTE = new SimpleDateFormat("HH:mm");
+    public static final DateFormat FORMATOR_MONTH_DATE = new SimpleDateFormat("MM月dd日");
+    public static final DateFormat FORMATOR_E_CN = new SimpleDateFormat("E", Locale.CHINA);
 
+    /**
+     * 将毫秒数转换成00:00:00格式，毫秒数从0开始，不是Date级别的毫秒数
+     * @param milliSecond
+     * @return
+     */
+    public static String getHmsFromMilliSecond(long milliSecond) {
+
+        long second = milliSecond / 1000;
+        long minute = second / 60;
+
+        String showSecond = String.valueOf(second % 60).length() == 1 ? "0" + second % 60 : String.valueOf(second % 60);
+        String showMinute = String.valueOf(minute % 60).length() == 1 ? "0" + minute % 60 : String.valueOf(minute % 60);
+        String showHour = String.valueOf(minute / 60).length() == 1 ? "0" + minute / 60 : String.valueOf(minute / 60);
+
+        return showHour + ":" + showMinute + ":" + showSecond;
+
+    }
     public static Date getNow() {
         return Calendar.getInstance().getTime();
     }

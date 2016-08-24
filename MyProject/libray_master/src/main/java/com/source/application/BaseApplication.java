@@ -1,21 +1,18 @@
 package com.source.application;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+
 import com.jiongbull.jlog.JLog;
-import com.jiongbull.jlog.constant.LogSegment;
 import com.jiongbull.jlog.constant.ZoneOffset;
 import com.lzy.okhttputils.OkHttpUtils;
+import com.orm.SugarApp;
 import com.orm.SugarContext;
 import com.source.util.BundleUtil;
-import com.source.util.StorageUtil;
 
 import java.io.File;
 import java.util.Locale;
@@ -23,7 +20,7 @@ import java.util.Locale;
 /**
  * Created by zhaoxu2014 on 15-1-31.
  */
-public abstract class BaseApplication extends Application{
+public abstract class BaseApplication extends SugarApp {
 
     public static String app_identity="ibrightech";
     public static Context context;

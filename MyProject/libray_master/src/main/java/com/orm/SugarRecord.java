@@ -29,7 +29,8 @@ import static com.orm.SugarContext.getSugarContext;
 public class SugarRecord {
 
     public static final String SUGAR = "Sugar";
-    private Long id = null;
+    private Long sugarprimaryid = null;
+    public static final  String SUGARIDNAME="sugarprimaryid";
 
     private static SQLiteDatabase getSugarDataBase() {
         return getSugarContext().getSugarDb().getDB();
@@ -132,7 +133,7 @@ public class SugarRecord {
     }
 
     public static <T> T findById(Class<T> type, Long id) {
-        List<T> list = find(type, "id=?", new String[]{String.valueOf(id)}, null, null, "1");
+        List<T> list = find(type, SUGARIDNAME+"=?", new String[]{String.valueOf(id)}, null, null, "1");
         if (list.isEmpty()) return null;
         return list.get(0);
     }
@@ -142,13 +143,13 @@ public class SugarRecord {
     }
 
     public static <T> List<T> findById(Class<T> type, String[] ids) {
-        String whereClause = "id IN (" + QueryBuilder.generatePlaceholders(ids.length) + ")";
+        String whereClause = SUGARIDNAME+" IN (" + QueryBuilder.generatePlaceholders(ids.length) + ")";
         return find(type, whereClause, ids);
     }
 
     public static <T> T first(Class<T>type) {
         List<T> list = findWithQuery(type,
-                "SELECT * FROM " + NamingHelper.toSQLName(type) + " ORDER BY ID ASC LIMIT 1");
+                "SELECT * FROM " + NamingHelper.toSQLName(type) + " ORDER BY "+SUGARIDNAME+" ASC LIMIT 1");
         if (list.isEmpty()) {
             return null;
         }
@@ -157,7 +158,7 @@ public class SugarRecord {
 
     public static <T> T last(Class<T>type) {
         List<T> list = findWithQuery(type,
-                "SELECT * FROM " + NamingHelper.toSQLName(type) + " ORDER BY ID DESC LIMIT 1");
+                "SELECT * FROM " + NamingHelper.toSQLName(type) + " ORDER BY "+SUGARIDNAME+" DESC LIMIT 1");
         if (list.isEmpty()) {
             return null;
         }
@@ -268,14 +269,14 @@ public class SugarRecord {
         Field idField = null;
         for (Field column : columns) {
             ReflectionUtil.addFieldValueToColumn(values, column, object, entitiesMap);
-            if (column.getName().equals("id")) {
+            if (column.getName().equals(SUGARIDNAME)) {
                 idField = column;
             }
         }
 
         boolean isSugarEntity = isSugarEntity(object.getClass());
         if (isSugarEntity && entitiesMap.containsKey(object)) {
-                values.put("id", entitiesMap.get(object));
+                values.put(SUGARIDNAME, entitiesMap.get(object));
         }
 
         long id = db.insertWithOnConflict(NamingHelper.toSQLName(object.getClass()), null, values,
@@ -293,7 +294,7 @@ public class SugarRecord {
                 entitiesMap.put(object, id);
             }
         } else if (SugarRecord.class.isAssignableFrom(object.getClass())) {
-            ((SugarRecord) object).setId(id);
+            ((SugarRecord) object).setSugarprimaryid(id);
         }
 
         Log.i(SUGAR, object.getClass().getSimpleName() + " saved : " + id);
@@ -326,7 +327,7 @@ public class SugarRecord {
                     e.printStackTrace();
                 }
             } else {
-                if (!column.getName().equals("id")) {
+                if (!column.getName().equals(SUGARIDNAME)) {
                     ReflectionUtil.addFieldValueToColumn(values, column, object, entitiesMap);
                 }
             }
@@ -372,11 +373,11 @@ public class SugarRecord {
     }
 
     public boolean delete() {
-        Long id = getId();
+        Long id = getSugarprimaryid();
         Class<?> type = getClass();
         if (id != null && id > 0L) {
             Log.i(SUGAR, type.getSimpleName() + " deleted : " + id);
-            return getSugarDataBase().delete(NamingHelper.toSQLName(type), "Id=?", new String[]{id.toString()}) == 1;
+            return getSugarDataBase().delete(NamingHelper.toSQLName(type), SUGARIDNAME+"=?", new String[]{id.toString()}) == 1;
         } else {
             Log.i(SUGAR, "Cannot delete object: " + type.getSimpleName() + " - object has not been saved");
             return false;
@@ -387,11 +388,11 @@ public class SugarRecord {
         Class<?> type = object.getClass();
         if (type.isAnnotationPresent(Table.class)) {
             try {
-                Field field = type.getDeclaredField("id");
+                Field field = type.getDeclaredField(SUGARIDNAME);
                 field.setAccessible(true);
                 Long id = (Long) field.get(object);
                 if (id != null && id > 0L) {
-                    boolean deleted = getSugarDataBase().delete(NamingHelper.toSQLName(type), "Id=?", new String[]{id.toString()}) == 1;
+                    boolean deleted = getSugarDataBase().delete(NamingHelper.toSQLName(type), SUGARIDNAME+"=?", new String[]{id.toString()}) == 1;
                     Log.i(SUGAR, type.getSimpleName() + " deleted : " + id);
                     return deleted;
                 } else {
@@ -426,12 +427,12 @@ public class SugarRecord {
         inflate(cursor, this, getSugarContext().getEntitiesMap());
     }
 
-    public Long getId() {
-        return id;
+    public Long getSugarprimaryid() {
+        return sugarprimaryid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setSugarprimaryid(Long sugarprimaryid) {
+        this.sugarprimaryid = sugarprimaryid;
     }
 
     static class CursorIterator<E> implements Iterator<E> {

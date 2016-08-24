@@ -1,5 +1,6 @@
 package com.orm.util;
 
+import com.orm.SugarRecord;
 import com.orm.dsl.Column;
 import com.orm.dsl.Table;
 
@@ -15,8 +16,8 @@ public class NamingHelper {
      *         "_id" (not case sensitive) in which case "_id" is returned
      */
     public static String toSQLNameDefault(String camelCased) {
-        if (camelCased.equalsIgnoreCase("_id")) {
-            return "_id";
+        if (camelCased.equalsIgnoreCase(SugarRecord.SUGARIDNAME)) {
+            return SugarRecord.SUGARIDNAME;
         }
 
         StringBuilder sb = new StringBuilder();

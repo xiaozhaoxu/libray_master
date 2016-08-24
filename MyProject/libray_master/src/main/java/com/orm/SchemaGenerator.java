@@ -185,14 +185,14 @@ public class SchemaGenerator {
         List<Field> fields = ReflectionUtil.getTableFields(table);
         String tableName = NamingHelper.toSQLName(table);
         StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS ");
-        sb.append(tableName).append(" ( ID INTEGER PRIMARY KEY AUTOINCREMENT ");
+        sb.append(tableName).append(" (" +SugarRecord.SUGARIDNAME+"  INTEGER PRIMARY KEY AUTOINCREMENT ");
 
         for (Field column : fields) {
             String columnName = NamingHelper.toSQLName(column);
             String columnType = QueryBuilder.getColumnType(column.getType());
 
             if (columnType != null) {
-                if (columnName.equalsIgnoreCase("Id")) {
+                if (columnName.equalsIgnoreCase(SugarRecord.SUGARIDNAME)) {
                     continue;
                 }
 

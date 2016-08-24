@@ -1,10 +1,10 @@
 package com.source.util;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.text.Html;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.source.application.BaseApplication;
 
 import java.io.BufferedReader;
@@ -21,6 +21,28 @@ import java.io.InputStreamReader;
  */
 public class StringUtils {
 
+    /**
+     * 解决自动换行排版问题
+     *
+     * @param input
+     * @return
+     */
+    public static String ToDBC(String input) {
+        if(CheckUtil.isEmpty(input)){
+            return "";
+        }
+
+        char[] c = input.toCharArray();
+        for (int i = 0; i < c.length; i++) {
+            if (c[i] == 12288) {
+                c[i] = (char) 32;
+                continue;
+            }
+            if (c[i] > 65280 && c[i] < 65375)
+                c[i] = (char) (c[i] - 65248);
+        }
+        return new String(c);
+    }
 
     public static String getDownloadFileName(String audio_url) {
         int lastPosition = audio_url.lastIndexOf(47);

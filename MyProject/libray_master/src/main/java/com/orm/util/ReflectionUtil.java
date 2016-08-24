@@ -69,7 +69,7 @@ public class ReflectionUtil {
             if (columnType.isAnnotationPresent(Table.class)) {
                 Field field;
                 try {
-                    field = columnType.getDeclaredField("id");
+                    field = columnType.getDeclaredField(SugarRecord.SUGARIDNAME);
                     field.setAccessible(true);
                     values.put(columnName,
                             (field != null)
@@ -82,7 +82,7 @@ public class ReflectionUtil {
             } else if (SugarRecord.class.isAssignableFrom(columnType)) {
                 values.put(columnName,
                         (columnValue != null)
-                                ? String.valueOf(((SugarRecord) columnValue).getId())
+                                ? String.valueOf(((SugarRecord) columnValue).getSugarprimaryid())
                                 : "0");
             } else {
                 if (columnType.equals(Short.class) || columnType.equals(short.class)) {
@@ -161,7 +161,7 @@ public class ReflectionUtil {
                 return;
             }
 
-            if (colName.equalsIgnoreCase("id")) {
+            if (colName.equalsIgnoreCase(SugarRecord.SUGARIDNAME)) {
                 long cid = cursor.getLong(columnIndex);
                 field.set(object, Long.valueOf(cid));
             } else if (fieldType.equals(long.class) || fieldType.equals(Long.class)) {
@@ -241,7 +241,7 @@ public class ReflectionUtil {
 
     public static void setFieldValueForId(Object object, Long value) {
         try {
-            Field field = getDeepField("id", object.getClass());
+            Field field = getDeepField(SugarRecord.SUGARIDNAME, object.getClass());
             field.setAccessible(true);
             field.set(object, value);
         } catch (IllegalAccessException e) {
