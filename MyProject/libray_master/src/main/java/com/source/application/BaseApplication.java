@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 
 import com.jiongbull.jlog.JLog;
+import com.jiongbull.jlog.constant.LogLevel;
 import com.jiongbull.jlog.constant.ZoneOffset;
 import com.lzy.okhttputils.OkHttpUtils;
 import com.orm.SugarApp;
@@ -15,6 +16,8 @@ import com.orm.SugarContext;
 import com.source.util.BundleUtil;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -51,9 +54,17 @@ public abstract class BaseApplication extends SugarApp {
                 .setConnectTimeout(OkHttpUtils.DEFAULT_MILLISECONDS)               //全局的连接超时时间
                 .setReadTimeOut(OkHttpUtils.DEFAULT_MILLISECONDS)                  //全局的读取超时时间
                 .setWriteTimeOut(OkHttpUtils.DEFAULT_MILLISECONDS);
-
+        List<LogLevel> logLevels = new ArrayList<LogLevel>();
+        logLevels.add(LogLevel.VERBOSE);
+        logLevels.add(LogLevel.DEBUG);
+        logLevels.add(LogLevel.INFO);
+        logLevels.add(LogLevel.WARN);
+        logLevels.add(LogLevel.WTF);
+        logLevels.add(LogLevel.ERROR);
+        logLevels.add(LogLevel.JSON);
         JLog.init(this)
                 .writeToFile(true)
+                .setLogLevelsForFile(logLevels)
                 .setLogDir(app_identity+File.separator+"log")
                 .setZoneOffset(ZoneOffset.P0800);
     }
