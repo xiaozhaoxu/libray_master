@@ -5,7 +5,7 @@ import android.text.Html;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.source.application.BaseApplication;
+import com.source.application.LibaryConfigBuilder;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -88,7 +88,7 @@ public class StringUtils {
                                         Object... object) {
         String res = "";
         try {
-            res = BaseApplication.context.getResources().getString(keyid, object);
+            res = LibaryConfigBuilder.context.getResources().getString(keyid, object);
         } catch (Exception e) {
             e.printStackTrace();
             res = "";

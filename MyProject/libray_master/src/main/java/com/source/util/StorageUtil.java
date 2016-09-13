@@ -2,7 +2,7 @@ package com.source.util;
 
 import android.content.res.AssetManager;
 import android.os.Environment;
-import com.source.application.BaseApplication;
+import com.source.application.LibaryConfigBuilder;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,12 +25,12 @@ public class StorageUtil {
 
     //应用临时使用的缓存目录（每次使用后应删除）
     public static String getCacheDir() {
-        return BaseApplication.context.getCacheDir() + "/" + BaseApplication.app_identity +"/";
+        return LibaryConfigBuilder.context.getCacheDir() + "/" + LibaryConfigBuilder.app_identity +"/";
     }
 
     //获取应用根目录
     public static String getStorageDirectory() {
-        return Environment.getExternalStorageDirectory()+ "/" + BaseApplication.app_identity+"/";
+        return Environment.getExternalStorageDirectory()+ "/" + LibaryConfigBuilder.app_identity+"/";
     }
 
 
@@ -60,7 +60,7 @@ public class StorageUtil {
 //            external += "/";
 //        }
         //为适应华为机顶盒内置SD卡无法访问的情况，将图片存储到应用Cache中
-        String external = BaseApplication.context.getCacheDir().getPath();
+        String external = LibaryConfigBuilder.context.getCacheDir().getPath();
         external += "/" + "cover_image_cache" + "/" + destName;
         if (isDirectory) {
             external += "/";
@@ -71,11 +71,11 @@ public class StorageUtil {
 
     public static void cleanAll() {
         try {
-            if (new File(BaseApplication.context.getCacheDir() + "/").exists())
-                FileUtils.cleanDirectory(new File(BaseApplication.context.getCacheDir() + "/"));
+            if (new File(LibaryConfigBuilder.context.getCacheDir() + "/").exists())
+                FileUtils.cleanDirectory(new File(LibaryConfigBuilder.context.getCacheDir() + "/"));
             String external = Environment.getExternalStorageDirectory().getPath();
-            if (new File(external + "/." + BaseApplication.app_identity + "/Content/").exists())
-                FileUtils.cleanDirectory(new File(external + "/." + BaseApplication.app_identity + "/Content/"));
+            if (new File(external + "/." + LibaryConfigBuilder.app_identity + "/Content/").exists())
+                FileUtils.cleanDirectory(new File(external + "/." + LibaryConfigBuilder.app_identity + "/Content/"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -111,7 +111,7 @@ public class StorageUtil {
                 path = path.substring(0, path.length() - 1);
             }
 
-            AssetManager assetManager = BaseApplication.context.getAssets();
+            AssetManager assetManager = LibaryConfigBuilder.context.getAssets();
 
             String[] files = new String[0];
 
@@ -175,7 +175,7 @@ public class StorageUtil {
 
     public static InputStream openInputStream(String file) throws IOException {
         if (file.startsWith(ROOT_ASSET)) {
-            AssetManager assetManager = BaseApplication.context.getAssets();
+            AssetManager assetManager = LibaryConfigBuilder.context.getAssets();
             return assetManager.open(file.substring(ROOT_ASSET.length()));
         } else {
             return FileUtils.openInputStream(new File(file));
@@ -199,7 +199,7 @@ public class StorageUtil {
     }
 
     public static void cleanCache() throws IOException {
-        FileUtils.cleanDirectory(BaseApplication.context.getCacheDir());
+        FileUtils.cleanDirectory(LibaryConfigBuilder.context.getCacheDir());
     }
 
 }

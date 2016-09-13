@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.aspsine.swipetoloadlayout.SwipeRefreshHeaderLayout;
 import com.source.R;
-import com.source.application.BaseApplication;
+import com.source.application.LibaryConfigBuilder;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -113,7 +113,7 @@ public class TwitterRefreshHeaderView extends SwipeRefreshHeaderLayout {
     public void onRelease() {
         if (!TextUtils.isEmpty(mLastUpdateTimeKey)) {
             mLastUpdateTime = new Date().getTime();
-            BaseApplication.preferences.edit().putLong(mLastUpdateTimeKey, mLastUpdateTime).commit();
+            LibaryConfigBuilder.preferences.edit().putLong(mLastUpdateTimeKey, mLastUpdateTime).commit();
         }
         Log.d("TwitterRefreshHeader", "onRelease()");
     }
@@ -155,7 +155,7 @@ public class TwitterRefreshHeaderView extends SwipeRefreshHeaderLayout {
     private String getLastUpdateTime() {
 
         if (mLastUpdateTime == -1 && !TextUtils.isEmpty(mLastUpdateTimeKey)) {
-            mLastUpdateTime = BaseApplication.preferences.getLong(mLastUpdateTimeKey, -1);
+            mLastUpdateTime = LibaryConfigBuilder.preferences.getLong(mLastUpdateTimeKey, -1);
         }
         if (mLastUpdateTime == -1) {
             return null;

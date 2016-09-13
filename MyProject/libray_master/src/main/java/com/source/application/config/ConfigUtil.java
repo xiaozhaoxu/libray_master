@@ -1,15 +1,15 @@
 package com.source.application.config;
 
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import com.source.application.BaseApplication;
+
+import com.source.application.LibaryConfigBuilder;
 
 /**
  * Created by zhaoxu2014 on 16/5/12.
  */
 public class ConfigUtil {
     public static <T> void putPreferences(String key, T value){
-        SharedPreferences sharedPreferences = BaseApplication.preferences;
+        SharedPreferences sharedPreferences = LibaryConfigBuilder.preferences;
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if(value instanceof String){
             editor.putString(key, value.toString());
@@ -26,7 +26,7 @@ public class ConfigUtil {
     }
 
     public static <T> void removePreferences(String key){
-        SharedPreferences sharedPreferences = BaseApplication.preferences;
+        SharedPreferences sharedPreferences = LibaryConfigBuilder.preferences;
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(key);
         editor.commit();
@@ -34,7 +34,7 @@ public class ConfigUtil {
 
     public static <T> T getPreferences(String key, T value){
         Object o = null;
-        SharedPreferences preferences = BaseApplication.preferences;
+        SharedPreferences preferences = LibaryConfigBuilder.preferences;
         if(value instanceof String){
             o =  preferences.getString(key, value.toString());
         }else if(value instanceof Boolean){

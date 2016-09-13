@@ -2,7 +2,7 @@ package com.source.util;
 
 import android.content.Context;
 import android.widget.Toast;
-import com.source.application.BaseApplication;
+import com.source.application.LibaryConfigBuilder;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,7 +22,7 @@ public class ToastUtil {
     }
     public static void showToast( int showtime, int Stringid,
                                   Object... object) {
-        Toast.makeText(BaseApplication.context, StringUtils.getStringByKey( Stringid, object),
+        Toast.makeText(LibaryConfigBuilder.context, StringUtils.getStringByKey( Stringid, object),
                 showtime).show();
     }
 
@@ -35,7 +35,7 @@ public class ToastUtil {
     public static void showToast(int Stringid,
                                  Object... object) {
         String content=StringUtils.getStringByKey( Stringid, object);
-        Toast.makeText(BaseApplication.context,content,
+        Toast.makeText(LibaryConfigBuilder.context,content,
                 Toast.LENGTH_SHORT).show();
     }
 
@@ -45,13 +45,13 @@ public class ToastUtil {
     }
     public static void showStringToast( int showtime,
                                         String showstring) {
-        Toast.makeText(BaseApplication.context, showstring, showtime).show();
+        Toast.makeText(LibaryConfigBuilder.context, showstring, showtime).show();
     }
 
     public static void showStringToast(Context context, String showstring) {
         Toast.makeText(context, showstring, Toast.LENGTH_SHORT).show();
     }
     public static void showStringToast(String showstring) {
-        Toast.makeText(BaseApplication.context, showstring, Toast.LENGTH_SHORT).show();
+        Toast.makeText(LibaryConfigBuilder.context, showstring, Toast.LENGTH_SHORT).show();
     }
 }
