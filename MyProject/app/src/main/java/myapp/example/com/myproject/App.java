@@ -2,7 +2,7 @@ package myapp.example.com.myproject;
 
 import android.app.Application;
 
-import com.source.application.LibaryConfigBuilder;
+import com.source.application.config.LibaryConfigBuilder;
 
 /**
  * Created by zhaoxu2014 on 16/8/18.

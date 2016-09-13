@@ -2,8 +2,6 @@ package com.source.application.config;
 
 import android.content.SharedPreferences;
 
-import com.source.application.LibaryConfigBuilder;
-
 /**
  * Created by zhaoxu2014 on 16/5/12.
  */

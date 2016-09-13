@@ -2,7 +2,7 @@ package com.source.util;
 
 import android.content.res.AssetManager;
 import android.os.Environment;
-import com.source.application.LibaryConfigBuilder;
+import com.source.application.config.LibaryConfigBuilder;
 
 import java.io.File;
 import java.io.IOException;

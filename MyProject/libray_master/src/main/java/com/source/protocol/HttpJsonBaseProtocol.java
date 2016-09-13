@@ -5,6 +5,10 @@ import android.content.Context;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 
+import com.lzy.okhttputils.OkHttpUtils;
+import com.lzy.okhttputils.callback.StringCallback;
+import com.lzy.okhttputils.model.HttpParams;
+import com.lzy.okhttputils.request.BaseRequest;
 import com.source.cache.CacheUtil;
 import com.source.util.CheckUtil;
 import com.source.util.LogUtil;

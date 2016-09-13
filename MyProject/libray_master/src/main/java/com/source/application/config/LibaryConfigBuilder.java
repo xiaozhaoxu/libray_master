@@ -1,4 +1,4 @@
-package com.source.application;
+package com.source.application.config;
 
 import android.app.Application;
 import android.content.Context;

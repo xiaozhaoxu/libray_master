@@ -5,7 +5,7 @@ import android.text.Html;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.source.application.LibaryConfigBuilder;
+import com.source.application.config.LibaryConfigBuilder;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;

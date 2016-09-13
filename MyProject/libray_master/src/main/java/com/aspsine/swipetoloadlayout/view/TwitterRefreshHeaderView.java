@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.aspsine.swipetoloadlayout.SwipeRefreshHeaderLayout;
 import com.source.R;
-import com.source.application.LibaryConfigBuilder;
+import com.source.application.config.LibaryConfigBuilder;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

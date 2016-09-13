@@ -2,7 +2,7 @@ package com.source.util;
 
 import android.content.Context;
 import android.widget.Toast;
-import com.source.application.LibaryConfigBuilder;
+import com.source.application.config.LibaryConfigBuilder;
 
 /**
  * Created with IntelliJ IDEA.
