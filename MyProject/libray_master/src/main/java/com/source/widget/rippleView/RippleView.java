@@ -200,7 +200,7 @@ public class RippleView extends RelativeLayout {
                 timer = 0;
                 durationEmpty = -1;
                 timerEmpty = 0;
-                canvas.restore();
+                canvas.save();
                 invalidate();
                 if (onCompletionListener != null) onCompletionListener.onComplete(this);
                 return;

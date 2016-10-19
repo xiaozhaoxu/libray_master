@@ -132,10 +132,10 @@ public class FlatCheckBox extends CheckBox implements Attributes.AttributeChange
         setTextColor(attributes.getColor(2));
 
         // check for IDE preview render
-        if(!this.isInEditMode()) {
-            Typeface typeface = getFont(getContext(), attributes);
-            if (typeface != null) setTypeface(typeface);
-        }
+//        if(!this.isInEditMode()) {
+//            Typeface typeface = getFont(getContext(), attributes);
+//            if (typeface != null) setTypeface(typeface);
+//        }
     }
 
 
