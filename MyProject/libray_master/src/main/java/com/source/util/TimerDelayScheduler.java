@@ -9,6 +9,7 @@ import java.util.Hashtable;
  */
 public class TimerDelayScheduler {
     public static  final  int TASK_WAT=1000;
+    public static  final  int RETRYCOUNT_MAX=3;
 
     private Object lock = new Object();
 
@@ -26,13 +27,16 @@ public class TimerDelayScheduler {
 
     TimerDelayHandler handler = new TimerDelayHandler(this);
 
-    static class TimerDelayHandler extends WeakReferenceHandler<TimerDelayScheduler> {
+    public class TimerDelayHandler extends WeakReferenceHandler<TimerDelayScheduler> {
         public TimerDelayHandler(TimerDelayScheduler timerDelayScheduler) {
             super(timerDelayScheduler);
         }
 
         @Override
         protected void handleMessage(Message msg, TimerDelayScheduler timerDelayScheduler) {
+            if(CheckUtil.isEmpty(msg))return;
+            if(CheckUtil.isEmpty(timerDelayScheduler))return;
+
 
             String taskToken = (String) msg.obj;
 
@@ -40,18 +44,26 @@ public class TimerDelayScheduler {
 
             //定位器未被暂停或者无效
             if (null != timeTaskData&&!timeTaskData.pause&&!timeTaskData.invalidate) {
-
+                timeTaskData.retryCount-=1;
                 if (null != timerDelayScheduler.listener) {
-                    timerDelayScheduler.listener.handlerTimeTaskFinished(timeTaskData.taskToken);
+                    timerDelayScheduler.listener.handlerTimeTaskFinished(timeTaskData.taskToken,timeTaskData.retryCount);
+                }
+                //如果重试次数为0了，移除定时任务
+                if(timeTaskData.retryCount<=0){
+                    invalidateWaitTask(timeTaskData.taskToken);
+                }else {
+                    scheduledWaitTask(timeTaskData.taskToken,timeTaskData.allmillisecond,timeTaskData.retryCount);
                 }
             }
         }
     }
-    public TimeTaskData createTimeTaskData(long taskToken){
+
+    public TimeTaskData createTimeTaskData(long taskToken,int retryCount){
         TimeTaskData timeTaskData =  new TimeTaskData();
         timeTaskData.taskToken= taskToken;
         timeTaskData.starttime= System.currentTimeMillis();
         timeTaskData.invalidate = false;
+        timeTaskData.retryCount=retryCount;
 
         timeTaskDataHashtable.put(taskToken+"",timeTaskData);
 
@@ -71,11 +83,16 @@ public class TimerDelayScheduler {
 
     //开启一个延时定时器
     public void scheduledWaitTask(long taskToken, long millisecond) {
+        scheduledWaitTask(taskToken,millisecond,1);
+    }
+    //开启一个延时定时器
+    public void scheduledWaitTask(long taskToken, long millisecond,int retryCount) {
         synchronized (lock){
             invalidateWaitTask(taskToken);
 
-            TimeTaskData  timeTaskData =createTimeTaskData(taskToken);
+            TimeTaskData  timeTaskData =createTimeTaskData(taskToken,retryCount);
             timeTaskData.millisecond= millisecond;
+            timeTaskData.allmillisecond=millisecond;
 
             Message msg =handler.obtainMessage();
             msg.what = TASK_WAT;
@@ -84,6 +101,7 @@ public class TimerDelayScheduler {
 
         }
     }
+
 
 
     //暂停延时定时器
@@ -132,18 +150,21 @@ public class TimerDelayScheduler {
     }
 
     public interface TimeTaskListener {
-        void handlerTimeTaskFinished(long taskToken);
+        void handlerTimeTaskFinished(long taskToken,int retryCount);
     }
 
     class TimeTaskData {
+        public int retryCount=1;
         public long taskToken;
         public long starttime;
 
+        public long allmillisecond;//总时间，millisecond的值不准
         public long millisecond;
 
         public boolean pause;
         public boolean invalidate;
 
     }
+
 
 }
