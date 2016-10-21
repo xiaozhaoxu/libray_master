@@ -15,7 +15,7 @@
     <color name="internal_velocimeter">#ffb4b4b4</color>
     <color name="needle">#6200EA</color>
     <color name="digital_number">#ffdcefff</color>
-    <color name="rippelColor">#FFFFFF</color>
+
 
     <color name="default_ascv_selected_color">#0099CC</color>
     <color name="default_ascv_unselected_color">#FFFFFF</color>
@@ -25,14 +25,5 @@
     <color name="spinner_bg_color">#ffee00</color>
 
 
-    <color name="blood_darker">#732219</color>
-    <color name="blood_dark">#a63124</color>
-    <color name="blood_primary">#d94130</color>
-    <color name="blood_light">#f2b6ae</color>
-    <integer-array name="blood">
-        <item>@color/blood_darker</item>
-        <item>@color/blood_dark</item>
-        <item>@color/blood_primary</item>
-        <item>@color/blood_light</item>
-    </integer-array>
+   
 </resources>
