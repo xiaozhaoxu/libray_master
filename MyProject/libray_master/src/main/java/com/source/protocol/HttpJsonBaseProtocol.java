@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 
 import com.lzy.okhttputils.OkHttpUtils;
+import com.lzy.okhttputils.callback.AbsCallback;
 import com.lzy.okhttputils.callback.StringCallback;
 import com.lzy.okhttputils.model.HttpParams;
 import com.lzy.okhttputils.request.BaseRequest;
@@ -39,7 +40,14 @@ public abstract class HttpJsonBaseProtocol extends HttpBaseProtocol {
     UUID uuid=null;
     public boolean isCancel = false;
     public boolean useBufferData = true;
+    AbsCallback callback;
 
+    public AbsCallback getCallback() {
+        if(CheckUtil.isEmpty(callback)){
+            callback=new MyStringCallback();
+        }
+        return callback;
+    }
     public class MyStringCallback extends StringCallback
     {
         @Override
@@ -236,7 +244,7 @@ public abstract class HttpJsonBaseProtocol extends HttpBaseProtocol {
             }
             uuid=UUID.randomUUID();
             request.headers(getHeaderMap()).tag(uuid);
-            request.execute(new MyStringCallback());
+            request.execute(getCallback());
 
 
 
