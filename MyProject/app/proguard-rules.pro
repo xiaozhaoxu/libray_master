@@ -15,3 +15,32 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+##################below is for common android
+-keep public class **.R$* { public static final int *; }
+-keep public class * extends android.app.Activity
+-keep public class * extends android.support.v4.app.Fragment
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.view.View
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
+-keep class * implements android.os.Parcelable {public static final android.os.Parcelable$Creator *; }
+##################upper is for common android
+-keep public interface com.yuzhi.fine.common.NotObfuscateInterface{public *;}
+-keep class * implements com.yuzhi.fine.common.NotObfuscateInterface{
+	<methods>;
+	<fields>;
+}
+
+
+# butterknife uses reflection
+-keep class butterknife.** { *; }
+-dontwarn butterknife.internal.**
+-keep class **$$ViewBinder { *; }
+-keepclasseswithmembernames class * {
+    @butterknife.* <fields>;
+}
+-keepclasseswithmembernames class * {
+    @butterknife.* <methods>;
+}

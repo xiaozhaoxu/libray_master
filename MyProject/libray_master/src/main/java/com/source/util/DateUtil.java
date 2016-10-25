@@ -84,7 +84,16 @@ public class DateUtil {
      */
     public static String getYMDBysecond(long time) {
 
-        return FORMATOR_YMD.format(new Date(time*1000));
+        return getYMDByMS(time*1000);
+    }
+    /**
+     * @param   time
+     * @return format yyyy-MM-dd
+     * 单位是秒
+     */
+    public static String getYMDByMS(long time) {
+
+        return FORMATOR_YMD.format(new Date(time));
     }
 
 

@@ -21,4 +21,20 @@ public class ColorUtils {
 
         return colorFilter;
     }
+
+    public static int COLOR_RGB(int r, int g, int b) {
+        return ((int) (((char) (r) | ((short) ((char) (g)) << 8)) | (((int) (char) (b)) << 16)));
+    }
+
+    public static int COLOR_R(int rgb) {
+        return (rgb << 24) >>> 24;
+    }
+
+    public static int COLOR_G(int rgb) {
+        return (rgb << 16) >>> 24;
+    }
+
+    public static int COLOR_B(int rgb) {
+        return (rgb << 8) >>> 24;
+    }
 }

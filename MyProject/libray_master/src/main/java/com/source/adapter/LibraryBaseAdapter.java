@@ -70,14 +70,14 @@ public abstract class LibraryBaseAdapter<T> extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = getItemView();
+            convertView = getItemView(position);
 
         }
         initItemView(position, convertView, parent);
         return convertView;
     }
 
-    public abstract View getItemView();
+    public abstract View getItemView(int position);
 
     public abstract void initItemView(int position, View convertView, ViewGroup parent);
 
