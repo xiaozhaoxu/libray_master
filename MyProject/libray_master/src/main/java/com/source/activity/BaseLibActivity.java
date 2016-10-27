@@ -2,6 +2,7 @@ package com.source.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+import com.source.activity.permissions.PermissionsActivity;
+import com.source.activity.permissions.PermissionsChecker;
 import com.source.common.AppManager;
 import com.source.util.CheckUtil;
 
@@ -21,14 +24,22 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
  * Created by zhaoxu2014 on 15/9/19.
  */
 public abstract class BaseLibActivity extends SwipeBackActivity {
+    private static final int PERMISSIONS_REQUEST_CODE = 0; // 请求码
+    public String[] PERMISSIONS = new String[]{};
+
+
     public Activity context;
     protected View mContentView;
     private SwipeBackLayout mSwipeBackLayout;//左右划返回上一级页面
+    public   PermissionsChecker mPermissionsChecker; // 权限检测器
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.context=this;
         super.onCreate(savedInstanceState);
         AppManager.getAppManager().addActivity(this);
+        mPermissionsChecker = new PermissionsChecker(this);
+
         initSwipeBack();
 
         // 修改状态栏颜色，4.4+生效
@@ -111,9 +122,34 @@ public abstract class BaseLibActivity extends SwipeBackActivity {
     protected abstract void setListener();
 
     /**
-     * 处理业务逻辑，状态恢复等操作
+     * 安卓6.0以下审请权限操作失败
      *
      * @param savedInstanceState
      */
     protected abstract void processLogic(Bundle savedInstanceState);
+
+    protected abstract boolean  permissionsFailed();
+
+    @Override protected void onResume() {
+        super.onResume();
+
+        // 缺少权限时, 进入权限配置页面
+        if (mPermissionsChecker.lacksPermissions(PERMISSIONS)) {
+            startPermissionsActivity();
+        }
+    }
+
+    private void startPermissionsActivity() {
+        PermissionsActivity.startActivityForResult(this, PERMISSIONS_REQUEST_CODE, PERMISSIONS);
+    }
+
+    @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // 拒绝时, 关闭页面, 缺少主要权限, 无法运行
+        if (requestCode == PERMISSIONS_REQUEST_CODE && resultCode == PermissionsActivity.PERMISSIONS_DENIED) {
+            if(!permissionsFailed()) {
+                finish();
+            }
+        }
+    }
 }

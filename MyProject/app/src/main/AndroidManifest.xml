@@ -29,6 +29,11 @@
             </intent-filter>
         </activity>
 
+
+        <activity android:name="com.source.activity.permissions.PermissionsActivity"
+            android:theme="@style/AppTheme.NoActionBar.Permissions"
+            />
+
         <meta-data
             android:name="DATABASE"
             android:value="sugar.db" />

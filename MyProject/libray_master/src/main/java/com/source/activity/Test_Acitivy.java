@@ -21,4 +21,9 @@ public class Test_Acitivy extends BaseLibActivity {
     protected void processLogic(Bundle savedInstanceState) {
 
     }
+
+    @Override
+    protected boolean permissionsFailed() {
+        return false;
+    }
 }

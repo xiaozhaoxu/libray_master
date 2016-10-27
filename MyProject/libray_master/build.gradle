@@ -44,7 +44,7 @@ dependencies {
 //    }
     //    compile 'com.github.xiaozhaoxu:TakePhoto-master:0.2'
     //安卓6 权限处理
-    // compile 'com.github.lovedise:PermissionGen:-SNAPSHOT'
+    //权限部分参考了以下地址 https://github.com/xiangyunwan/wcl-permission-demo-master
 
     //类似QQ空间，微信朋友圈，微博主页等，展示图片的九宫格控件，自动根据图片的数量确定图片大小和控件大小，
     //    compile 'com.lzy.widget:ninegridview:0.2.0'

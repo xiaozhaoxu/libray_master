@@ -1,5 +1,6 @@
 package myapp.example.com.myproject;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +35,10 @@ public class MainActivity extends BaseLibActivity {
     protected void initView(Bundle savedInstanceState) {
         setContentView(R.layout.content_main);
         ButterKnife.bind(this);
+        PERMISSIONS = new String[]{
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        };
+
 
 //        mSwipeBackLayout.addSwipeListener(new SwipeBackLayout.SwipeListener() {
 //            @Override
@@ -131,5 +136,10 @@ public class MainActivity extends BaseLibActivity {
     @Override
     protected void processLogic(Bundle savedInstanceState) {
 
+    }
+
+    @Override
+    protected boolean permissionsFailed() {
+        return false;
     }
 }
