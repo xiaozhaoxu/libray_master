@@ -37,7 +37,7 @@ dependencies {
     }
 
 
-
+//compile 'org.jsoup:jsoup:1.10.1' //html内容解析
    //     一款用于在Android设备上获取照片（拍照或从相册、文件中选择）、裁剪图片、压缩图片的开源工具库 https://crazycodeboy.github.io/TakePhoto
 //    compile('com.jph.takephoto:takephoto_library:3.0.2') {
 //        exclude module: 'support-v4'
