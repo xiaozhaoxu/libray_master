@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 
+import com.jiongbull.jlog.JLog;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,7 +30,7 @@ public class TheImgUtil {
             if (!CheckUtil.isEmpty(bitmap)) {
                 int width = bitmap.getWidth();
                 scale = (float)w / width;
-                LogUtil.d("bitmap", "width==" + bitmap.getWidth() + "==height==" + bitmap.getHeight() + "==scale==" + scale + "==w==" + w);
+                JLog.d("bitmap", "width==" + bitmap.getWidth() + "==height==" + bitmap.getHeight() + "==scale==" + scale + "==w==" + w);
                 if (scale == 1) {
                     return fromFile;
                 } else {

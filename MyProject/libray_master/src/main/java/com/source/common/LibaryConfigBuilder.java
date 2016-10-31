@@ -61,7 +61,7 @@ public  class LibaryConfigBuilder {
         try {
             ApplicationInfo info = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
             Bundle bundle = info.metaData;
-            app_identity = BundleUtil.getStringFormBundle(bundle, "app_identify");
+            app_identity = BundleUtil.getStringFormBundle(bundle, "app_identify",app_identity);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -81,6 +81,7 @@ public  class LibaryConfigBuilder {
         logLevels.add(LogLevel.ERROR);
         logLevels.add(LogLevel.JSON);
         JLog.init(this.context)
+                .setDebug(debug)
                 .writeToFile(true)
                 .setLogLevelsForFile(logLevels)
                 .setLogDir(app_identity+File.separator+"log")

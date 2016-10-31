@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 
+import com.jiongbull.jlog.JLog;
 import com.lzy.okhttputils.OkHttpUtils;
 import com.lzy.okhttputils.callback.AbsCallback;
 import com.lzy.okhttputils.callback.StringCallback;
@@ -12,7 +13,6 @@ import com.lzy.okhttputils.model.HttpParams;
 import com.lzy.okhttputils.request.BaseRequest;
 import com.source.cache.CacheUtil;
 import com.source.util.CheckUtil;
-import com.source.util.LogUtil;
 import com.source.util.StringUtils;
 import com.source.util.ToastUtil;
 
@@ -78,7 +78,7 @@ public abstract class HttpJsonBaseProtocol extends HttpBaseProtocol {
             if(CheckUtil.isEmpty(body)){
                 body="";
             }
-            LogUtil.d(TAG, "联网失败，，访问地址" + getUrl() + "---->statusCode:" + statusCode+ " body:" +body);
+            JLog.d(TAG, "联网失败，，访问地址" + getUrl() + "---->statusCode:" + statusCode+ " body:" +body);
             if (!CheckUtil.isEmpty(myCallback)) {
                 failResult = myCallback.onFailure(call, neterror);
             }
@@ -101,7 +101,7 @@ public abstract class HttpJsonBaseProtocol extends HttpBaseProtocol {
             }
 
             if (StringUtils.isValid(response)) {
-                LogUtil.d(TAG, "获取数据成功，访问地址" + getUrl() + " ----> 返回结果" + response);
+                JLog.d(TAG, "获取数据成功，访问地址" + getUrl() + " ----> 返回结果" + response);
                 //缓冲本次数据到本地
                 if (useBufferData) {
                     CacheUtil.saveString(getUrl(), response);
@@ -226,7 +226,7 @@ public abstract class HttpJsonBaseProtocol extends HttpBaseProtocol {
             }
             BaseRequest request=null;
             if (isGetMode()) {
-                LogUtil.d(TAG, "get方式--》请求地址Url:" + getNetUrl());
+                JLog.d(TAG, "get方式--》请求地址Url:" + getNetUrl());
 
                 request= OkHttpUtils.get(getUrl())
                         .params((HttpParams) getParams());
@@ -234,10 +234,10 @@ public abstract class HttpJsonBaseProtocol extends HttpBaseProtocol {
             }else {
                 Object object=getJsonParams();
                 if(!CheckUtil.isEmpty(object)&&object instanceof JSONObject){
-                    LogUtil.d(TAG, "post方式--》请求地址url;" + getUrl() + "   -->JSONObject:" + object.toString());
+                    JLog.d(TAG, "post方式--》请求地址url;" + getUrl() + "   -->JSONObject:" + object.toString());
                     request= OkHttpUtils.post(getUrl()).postJson(object.toString());
                 }else{
-                    LogUtil.d(TAG, "post方式--》请求地址url;" + getUrl() + "   -->getParams:" + getUrlParamsByMap(getParams()));
+                    JLog.d(TAG, "post方式--》请求地址url;" + getUrl() + "   -->getParams:" + getUrlParamsByMap(getParams()));
                     request= OkHttpUtils.post(getUrl()).params(getParams());
                 }
 
@@ -249,7 +249,7 @@ public abstract class HttpJsonBaseProtocol extends HttpBaseProtocol {
 
 
         } catch (Exception e) {
-            LogUtil.e(TAG, "Action failed: " + e.getMessage());
+            JLog.e(TAG, "Action failed: " + e.getMessage());
             if (!CheckUtil.isEmpty(myCallback)) {
                 myCallback.onFailure(null , null);
             }
@@ -288,7 +288,7 @@ public abstract class HttpJsonBaseProtocol extends HttpBaseProtocol {
     }
     public void cancel(boolean showLog) {
         if(showLog){
-            LogUtil.d(TAG, "取消 url: " + getUrl() + "的接口");
+            JLog.d(TAG, "取消 url: " + getUrl() + "的接口");
         }
         isCancel = true;
         if (null != uuid) {

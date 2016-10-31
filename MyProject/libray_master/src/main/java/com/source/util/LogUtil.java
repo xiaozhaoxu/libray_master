@@ -1,6 +1,7 @@
 package com.source.util;
 
 import android.util.Log;
+
 import com.jiongbull.jlog.JLog;
 import com.jiongbull.jlog.Settings;
 
@@ -64,7 +65,6 @@ public class LogUtil {
     }
 
     public static void e(String tag, String msg) {
-
         if(isJLogDebug()){
             JLog.e(tag, msg);
         }else{

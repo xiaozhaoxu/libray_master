@@ -13,6 +13,8 @@ android {
     }
     buildTypes {
         release {
+           // BuildConfig类中添加一个LOG_DEBUG变量
+           // buildConfigField "boolean", "LOG_DEBUG", "true"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

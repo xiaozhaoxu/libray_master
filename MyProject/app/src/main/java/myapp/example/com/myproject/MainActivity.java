@@ -7,9 +7,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.bumptech.glide.Glide;
 import com.github.yoojia.inputs.AndroidNextInputs;
 import com.github.yoojia.inputs.StaticScheme;
+import com.jiongbull.jlog.JLog;
 import com.source.activity.BaseLibActivity;
 import com.source.util.JsonUtil;
 import com.source.widget.image.config.ViewSimpleTarget;
@@ -39,6 +41,16 @@ public class MainActivity extends BaseLibActivity {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
         };
 
+
+        JSONObject js=new JSONObject();
+        js.put("id",1000);
+        js.put("name","zhaoxu");
+        js.put("addresss","北京");
+        js.put("package","abc");
+
+        GroupTest gt= JsonUtil.json2Bean(js.toString(),GroupTest.class);
+        JLog.d(js.toJSONString());
+        JLog.json(js.toJSONString());
 
 //        mSwipeBackLayout.addSwipeListener(new SwipeBackLayout.SwipeListener() {
 //            @Override
