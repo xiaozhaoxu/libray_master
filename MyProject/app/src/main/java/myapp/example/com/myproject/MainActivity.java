@@ -2,6 +2,7 @@ package myapp.example.com.myproject;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -117,6 +118,15 @@ public class MainActivity extends BaseLibActivity {
 
                 .into(new ViewSimpleTarget(imageview));
 
+
+
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        setTintColor(Color.BLUE);
     }
 
     @OnClick({R.id.bt_unvalid,R.id.bt_valid,R.id.image})
@@ -128,14 +138,14 @@ public class MainActivity extends BaseLibActivity {
                 startActivity(intent);
                 break;
             }
-            case  R.id.bt_unvalid:{
-                setSwipeBackEnable(false);
-             break;
-            }
-            case R.id.bt_valid:{
-                setSwipeBackEnable(true);
-                break;
-            }
+//            case  R.id.bt_unvalid:{
+//                setSwipeBackEnable(false);
+//             break;
+//            }
+//            case R.id.bt_valid:{
+//                setSwipeBackEnable(true);
+//                break;
+//            }
 
         }
     }
