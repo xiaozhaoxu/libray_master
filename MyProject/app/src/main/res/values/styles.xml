@@ -8,6 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="android:windowIsTranslucent">true</item><!--这句得配置下，要不划动返回时底色是黑的-->
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:clipToPadding">false</item>
+
     </style>
 
     <style name="AppTheme.NoActionBar">

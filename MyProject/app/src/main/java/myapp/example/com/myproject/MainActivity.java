@@ -124,10 +124,12 @@ public class MainActivity extends BaseLibActivity {
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
-        setTintColor(Color.BLUE);
+    protected void onResume() {
+        super.onResume();
+        setTintColor(Color.YELLOW);
     }
+
+
 
     @OnClick({R.id.bt_unvalid,R.id.bt_valid,R.id.image})
     public void viewClick(View view){

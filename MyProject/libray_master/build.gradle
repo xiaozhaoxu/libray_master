@@ -34,9 +34,11 @@ dependencies {
     compile ('com.github.xiaozhaoxu:SwipeBackLayout:0.1'){
         exclude module:'support-v4'
     }
+    compile 'com.nineoldandroids:library:2.4.0'
 
 
-  //  compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+
+    //  compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 //    compile ('me.imid.swipebacklayout.lib:library:1.0.0'){//https://github.com/ikew0ng/SwipeBackLayout
 //        exclude module:'support-v4'
 //    }
