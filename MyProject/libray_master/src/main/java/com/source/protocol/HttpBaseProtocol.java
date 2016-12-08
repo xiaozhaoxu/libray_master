@@ -1,10 +1,11 @@
 package com.source.protocol;
 
-import android.content.Context;
 import com.lzy.okhttputils.model.HttpHeaders;
 import com.lzy.okhttputils.model.HttpParams;
-import okhttp3.Call;
+
 import org.json.JSONObject;
+
+import okhttp3.Call;
 
 
 /**
@@ -14,7 +15,6 @@ public abstract class HttpBaseProtocol {
     public static final int DEFAULT_CODE = -1;
     public String url = "";
     public CallBack myCallback;
-    public Context context;
     protected int code;
     protected String msg;
 

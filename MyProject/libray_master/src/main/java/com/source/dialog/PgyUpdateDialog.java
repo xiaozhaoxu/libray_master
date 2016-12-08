@@ -3,6 +3,8 @@ package com.source.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +43,31 @@ public class PgyUpdateDialog extends Dialog implements DialogInterface {
         this.result=result;
         appBean = UpdateManagerListener.getAppBeanFromString(result);
         init(context);
+
+    }
+
+    public boolean isUpdate(){
+        String versionName = appBean.getVersionName();
+        String appVersionName = "";
+        try {
+            PackageInfo packageInfo = tmpContext.getPackageManager().getPackageInfo(tmpContext.getPackageName(), PackageManager.GET_CONFIGURATIONS);
+            if (packageInfo != null) {
+                appVersionName = packageInfo.versionName;
+            }
+        } catch (Exception e) {
+            return true;
+        }
+        String []VS=versionName.split("\\.");
+        String []AVS=appVersionName.split("\\.");
+        if(VS.length!=AVS.length){
+            return true;
+        }else{
+            if(VS[VS.length-1].equalsIgnoreCase(AVS[AVS.length-1])){
+                return !versionName.equalsIgnoreCase(appVersionName);
+            }else{
+                return false;
+            }
+        }
 
     }
 

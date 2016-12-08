@@ -1,7 +1,8 @@
 package com.source.dialog;
 
-import android.app.Activity;
 import android.content.Context;
+
+import com.source.util.CheckUtil;
 
 /**
  * Created by zhaoxu2014 on 16/5/21.
@@ -16,8 +17,11 @@ public class LibDialogUtil {
         return instance;
     }
     public PgyUpdateDialog showUpdateDialog(Context context,String result){
+        if (CheckUtil.isEmpty(context)) return null;
         PgyUpdateDialog dialog=new PgyUpdateDialog(context,result);
-        dialog.show();
+        if(dialog.isUpdate()){
+            dialog.show();
+        }
         return dialog;
     }
 }

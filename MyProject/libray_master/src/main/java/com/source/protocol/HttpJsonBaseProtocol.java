@@ -1,7 +1,6 @@
 package com.source.protocol;
 
 
-import android.content.Context;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 
@@ -185,21 +184,20 @@ public abstract class HttpJsonBaseProtocol extends HttpBaseProtocol {
         }
     }
 
-    public void execute(Context context, CallBack myCallback) {
-        execute(context, true, myCallback);
+    public void execute( CallBack myCallback) {
+        execute( true, myCallback);
     }
 
-    public void execute(Context context, boolean useBufferData, CallBack myCallback) {
-        execute(context, null, useBufferData, myCallback);
+    public void execute( boolean useBufferData, CallBack myCallback) {
+        execute( null, useBufferData, myCallback);
     }
 
-    public void execute(Context context, Handler tokenHandler, CallBack myCallback) {
-        execute(context, tokenHandler, true, myCallback);
+    public void execute( Handler tokenHandler, CallBack myCallback) {
+        execute(tokenHandler, true, myCallback);
     }
 
-    public void execute(Context context, Handler tokenHandler, boolean useBufferData, CallBack myCallback) {
+    public void execute( Handler tokenHandler, boolean useBufferData, CallBack myCallback) {
         this.tokenHandler = tokenHandler;
-        this.context = context;
         this.useBufferData = useBufferData;
         this.myCallback = myCallback;
         isCancel = false;
