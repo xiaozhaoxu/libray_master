@@ -18,10 +18,10 @@ public class LibDialogUtil {
     }
     public PgyUpdateDialog showUpdateDialog(Context context,String result){
         if (CheckUtil.isEmpty(context)) return null;
-        PgyUpdateDialog dialog=new PgyUpdateDialog(context,result);
-        if(dialog.isUpdate()){
-            dialog.show();
-        }
+        PgyUpdateDialog dialog = new PgyUpdateDialog(context, result);
+
+        dialog.show();
+
         return dialog;
     }
 }
