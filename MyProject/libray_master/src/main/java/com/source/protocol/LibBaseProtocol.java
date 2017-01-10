@@ -1,20 +1,17 @@
 package com.source.protocol;
 
-import com.lzy.okhttputils.model.HttpHeaders;
-import com.lzy.okhttputils.model.HttpParams;
+import com.lzy.okgo.model.HttpHeaders;
+import com.lzy.okgo.model.HttpParams;
 
 import org.json.JSONObject;
-
-import okhttp3.Call;
-
 
 /**
  * Created by zhaoxu2014 on 15-1-31.
  */
-public abstract class HttpBaseProtocol {
+public abstract class LibBaseProtocol {
     public static final int DEFAULT_CODE = -1;
     public String url = "";
-    public CallBack myCallback;
+    public LibBaseCallBack myCallback;
     protected int code;
     protected String msg;
 
@@ -53,15 +50,5 @@ public abstract class HttpBaseProtocol {
 
 
 
-    public interface CallBack {
-        public void onStart();//开始联网
-
-        public boolean onUseBufferDataAndCancelNetwork(Object object);//是否采用本地数据并打断联网
-
-        public void onSuccess(boolean isSuccess, String msg, Object object);//联网成功
-
-        public boolean onFailure(Call call, NetErrorEntity errorEntity);//联网失败
-        public void onUpProgress(long currentSize, long totalSize, float progress, long networkSpeed);
-    }
 
 }

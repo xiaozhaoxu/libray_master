@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public abstract class LibraryBaseAdapter<T> extends BaseAdapter {
+public abstract class LibBaseAdapter<T> extends BaseAdapter {
     public AdapterCallback callback;
     protected Context ctx;
     protected List<T> libraryAdapterList = new ArrayList<T>();
@@ -23,25 +23,25 @@ public abstract class LibraryBaseAdapter<T> extends BaseAdapter {
 
     }
 
-    public LibraryBaseAdapter(Context ctx) {
+    public LibBaseAdapter(Context ctx) {
 
         this.ctx = ctx;
         init();
     }
 
-    public LibraryBaseAdapter(Context ctx, List<T> list) {
+    public LibBaseAdapter(Context ctx, List<T> list) {
         this.ctx = ctx;
         init();
         setDatas(list);
     }
 
-    public LibraryBaseAdapter(Context ctx, AdapterCallback callback) {
+    public LibBaseAdapter(Context ctx, AdapterCallback callback) {
         this.ctx = ctx;
         init();
         this.callback = callback;
     }
 
-    public LibraryBaseAdapter( Context ctx, List<T> libraryAdapterList,AdapterCallback callback) {
+    public LibBaseAdapter(Context ctx, List<T> libraryAdapterList, AdapterCallback callback) {
         this.callback = callback;
         this.ctx = ctx;
         this.libraryAdapterList = libraryAdapterList;
