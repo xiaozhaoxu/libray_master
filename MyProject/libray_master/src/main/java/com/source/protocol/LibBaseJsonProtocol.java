@@ -1,6 +1,5 @@
 package com.source.protocol;
 
-
 import com.jiongbull.jlog.JLog;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
@@ -24,9 +23,10 @@ import okhttp3.Call;
 import okhttp3.Response;
 
 /**
- * Created by zhaoxu2014 on 15/11/17.
+ * Created by zhaoxu2014 on 17/1/11.
  */
-public abstract class LibBaseStringProtocol extends LibBaseProtocol {
+
+public abstract class LibBaseJsonProtocol extends LibBaseProtocol {
     public static final String TAG = "---protocol---";
     public static final String MEDIA_TYPE = "application/json; charset=utf-8";
 
