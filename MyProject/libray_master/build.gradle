@@ -36,6 +36,7 @@ dependencies {
     }
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.lzy.net:okgo:2.1.4'
+    compile 'com.github.xiaozhaoxu:BaseRecyclerViewAdapterHelper:2.7.7'
 
 
     //  compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
