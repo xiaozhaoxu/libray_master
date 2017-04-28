@@ -1,8 +1,8 @@
 package com.source.protocol;
 
+import com.alibaba.fastjson.JSONObject;
 import com.source.util.CheckUtil;
 import com.source.util.JsonUtil;
-import org.json.JSONObject;
 
 /**
  * {"msg":"你已提交申请","code":400,"data":"","msg_code":"REPEATE","errmsg":""}

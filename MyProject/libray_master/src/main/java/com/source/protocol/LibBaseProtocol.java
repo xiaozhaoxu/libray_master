@@ -1,15 +1,15 @@
 package com.source.protocol;
 
+import com.alibaba.fastjson.JSONObject;
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.HttpParams;
 
-import org.json.JSONObject;
 
 /**
  * Created by zhaoxu2014 on 15-1-31.
  */
 public abstract class LibBaseProtocol {
-    public static final int DEFAULT_CODE = -1;
+    public static final int DEFAULT_CODE = 0;
     public String url = "";
     public LibBaseCallBack myCallback;
     protected int code;
@@ -29,6 +29,8 @@ public abstract class LibBaseProtocol {
     protected abstract boolean isGetMode();
 
     protected abstract void execute();
+
+    protected abstract int getTag();
 
 
     protected abstract boolean handlerBufferData(String result);

@@ -1,7 +1,6 @@
 package com.source.fragment;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,26 +15,19 @@ public abstract class BaseLibFragment extends Fragment {
     public String TAG;
     protected View mContentView;
     public Activity context;
-    private boolean isPrepared=false;
+    private boolean isPrepared;
     Bundle savedState;
+    /**
+     * 第一次onResume中的调用onUserVisible避免操作与onFirstUserVisible操作重复
+     */
+    private boolean isFirstResume = true;
+    private boolean isFirstVisible = true;
+    private boolean isFirstInvisible = true;
     @Override
     public void onAttach(Activity activity) {
         context=activity;
         TAG=this.getClass().getSimpleName();
         super.onAttach(activity);
-    }
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isPrepared) {
-            if (isVisibleToUser) {
-
-                onUserVisible();
-
-            } else {
-                onUserINVisible();
-            }
-        }
     }
 
     @Override
@@ -44,6 +36,7 @@ public abstract class BaseLibFragment extends Fragment {
         if (!restoreStateFromArguments()) {
 
         }
+        initPrepare();
     }
 
     @Override
@@ -56,10 +49,7 @@ public abstract class BaseLibFragment extends Fragment {
             processLogic(savedInstanceState);
             isPrepared = true;
 
-            //一开始进来加载数据
-            if(getUserVisibleHint()&&isPrepared){
-                onUserVisible();
-            }
+
         } else {
             ViewGroup parent = (ViewGroup) mContentView.getParent();
             if (parent != null) {
@@ -67,6 +57,56 @@ public abstract class BaseLibFragment extends Fragment {
             }
         }
         return mContentView;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (isFirstResume) {
+            isFirstResume = false;
+            return;
+        }
+        if (getUserVisibleHint()) {
+            onUserVisible();
+        }
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (getUserVisibleHint()) {
+            onUserInvisible();
+        }
+    }
+
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            if (isFirstVisible) {
+                isFirstVisible = false;
+                initPrepare();
+            } else {
+                onUserVisible();
+            }
+        } else {
+            if (isFirstInvisible) {
+                isFirstInvisible = false;
+                onFirstUserInvisible();
+            } else {
+                onUserInvisible();
+            }
+        }
+    }
+
+    public synchronized void initPrepare() {
+        if (isPrepared) {
+            onFirstUserVisible();
+        } else {
+            isPrepared = true;
+        }
     }
 
     protected void setContentView( int layoutResID) {
@@ -156,11 +196,24 @@ public abstract class BaseLibFragment extends Fragment {
      * @param savedInstanceState
      */
     protected abstract void processLogic(Bundle savedInstanceState);
+    /**
+     * 第一次fragment可见（进行初始化工作）
+     */
+    public abstract void onFirstUserVisible();
 
     /**
-     * 当fragment对用户可见时，会调用该方法，可在该方法中懒加载网络数据
+     * fragment可见（切换回来或者onResume）
      */
-    protected abstract void onUserVisible();
+    public abstract void onUserVisible();
 
-    protected abstract void onUserINVisible();
+    /**
+     * 第一次fragment不可见（不建议在此处理事件）
+     */
+    public  void onFirstUserInvisible(){};
+
+    /**
+     * fragment不可见（切换掉或者onPause）
+     */
+    public abstract void onUserInvisible();
+
 }

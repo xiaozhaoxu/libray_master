@@ -41,6 +41,11 @@ public class MainActivity extends BaseLibActivity {
         PERMISSIONS = new String[]{
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
         };
+//改的baselibfragment
+//        pagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(), mFragmentList,mTitleList);
+//        mViewpager.setAdapter(pagerAdapter);
+
+
 
 
         JSONObject js=new JSONObject();
@@ -107,20 +112,15 @@ public class MainActivity extends BaseLibActivity {
         String url = "http://imgsrc.baidu.com/forum/w%3D580/sign=c49c299a17ce36d3a20483380af23a24/213fb80e7bec54e7a9f8cf5ebb389b504fc26a5e.jpg";
 
         imageview.setScaleType(ImageView.ScaleType.CENTER);
-
         Glide
                 .with(this)
+//                .load(R.drawable.ic_launcher)
                 .load(url)
                 //                .placeholder(R.drawable.ic_launcher) //设置占位图
                 //                .error(R.drawable.ic_launcher) //设置错误图片
                 .crossFade() //设置淡入淡出效果，默认300ms，可以传参
                 .bitmapTransform(new CropCircleTransformation(this))
-
                 .into(new ViewSimpleTarget(imageview));
-
-
-
-
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.source.protocol;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.jiongbull.jlog.JLog;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
@@ -10,14 +12,11 @@ import com.lzy.okgo.request.BaseRequest;
 import com.source.util.CheckUtil;
 import com.source.util.ToastUtil;
 
-import org.json.JSONObject;
-
 import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import okhttp3.Call;
 import okhttp3.Response;
@@ -31,7 +30,6 @@ public abstract class LibBaseJsonProtocol extends LibBaseProtocol {
     public static final String MEDIA_TYPE = "application/json; charset=utf-8";
 
 
-    UUID uuid=null;
     public boolean isCancel = false;
     public boolean useCacheData = false;
     AbsCallback callback;
@@ -47,7 +45,7 @@ public abstract class LibBaseJsonProtocol extends LibBaseProtocol {
         @Override
         public void upProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
             if(null!=myCallback) {
-                myCallback.upProgress(currentSize,  totalSize,  progress,  networkSpeed);
+                myCallback.upProgress(getTag(),currentSize,  totalSize,  progress,  networkSpeed);
             }
 
         }
@@ -55,7 +53,7 @@ public abstract class LibBaseJsonProtocol extends LibBaseProtocol {
         @Override
         public void downloadProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
             if(null!=myCallback) {
-                myCallback.downloadProgress(currentSize,  totalSize,  progress,  networkSpeed);
+                myCallback.downloadProgress(getTag(),currentSize,  totalSize,  progress,  networkSpeed);
             }
         }
 
@@ -83,7 +81,7 @@ public abstract class LibBaseJsonProtocol extends LibBaseProtocol {
 
         @Override
         public void onAfter(String s, Exception e) {
-            cancel(false);
+            myCallback.onAfter(getTag());
         }
 
     }
@@ -97,8 +95,8 @@ public abstract class LibBaseJsonProtocol extends LibBaseProtocol {
             String body = "";
             try {
                 body = response.body().string();
-                js = new JSONObject(body);
-                statusCode = js.optInt("code", DEFAULT_CODE);
+                js = JSON.parseObject(body) ;
+                statusCode = js.getIntValue("code") ;
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
@@ -111,7 +109,7 @@ public abstract class LibBaseJsonProtocol extends LibBaseProtocol {
             }
             JLog.d(TAG, "联网失败，，访问地址" + getUrl() + "---->statusCode:" + statusCode + " body:" + body);
             if (!CheckUtil.isEmpty(myCallback)) {
-                failResult = myCallback.onFailure(isFromCache,call, neterror, e);
+                failResult = myCallback.onFailure(getTag(),isFromCache,call, neterror, e);
             }
 
             if (!failResult) {
@@ -119,7 +117,7 @@ public abstract class LibBaseJsonProtocol extends LibBaseProtocol {
             }
         }else{
             if (!CheckUtil.isEmpty(myCallback)) {
-                failResult = myCallback.onFailure(isFromCache,call, null, e);
+                failResult = myCallback.onFailure(getTag(),isFromCache,call, null, e);
             }
             if (!failResult) {
                 ToastUtil.showStringToast("获取数据失败");
@@ -131,7 +129,7 @@ public abstract class LibBaseJsonProtocol extends LibBaseProtocol {
         if (isCancel) return;
         if (CheckUtil.isEmpty(response)) {
             if (null != myCallback) {
-                myCallback.onFailure(false,call,null, null);
+                myCallback.onFailure(getTag(),false,call,null, null);
             }
         }
         handleResult(isFromCache,response);
@@ -141,14 +139,14 @@ public abstract class LibBaseJsonProtocol extends LibBaseProtocol {
         Object be = null;
         try {
             String result =response;
-            JSONObject jsonObject = new JSONObject(result);
-            Iterator it = jsonObject.keys();
+            JSONObject jsonObject = JSON.parseObject(result);
+            Iterator it = jsonObject.keySet().iterator();
             for (; it.hasNext(); ) {
                 String name = (String) it.next();
                 if (name.equals("code")) {
-                    code = jsonObject.optInt("code", DEFAULT_CODE);
+                    code = jsonObject.getIntValue("code");
                 } else if (name.equals("msg") || name.equals("message")) {
-                    msg = jsonObject.optString(name);
+                    msg = jsonObject.getString(name);
                 }
 
             }
@@ -158,7 +156,7 @@ public abstract class LibBaseJsonProtocol extends LibBaseProtocol {
             e.printStackTrace();
         } finally {
             if (null != myCallback) {
-                myCallback.onSuccess(isFromCache,isSuccess(), getMsg(), be);
+                myCallback.onSuccess(getTag(),isFromCache,isSuccess(), getMsg(), be);
 
             }
 
@@ -185,7 +183,7 @@ public abstract class LibBaseJsonProtocol extends LibBaseProtocol {
         try {
             if (isCancel) return;
             if (!CheckUtil.isEmpty(myCallback)) {
-                myCallback.onBefore();
+                myCallback.onBefore(getTag());
             }
 
             BaseRequest request=null;
@@ -206,8 +204,7 @@ public abstract class LibBaseJsonProtocol extends LibBaseProtocol {
                 }
 
             }
-            uuid= UUID.randomUUID();
-            request.headers(getHeaderMap()).tag(uuid).cacheKey(getCacheKey()).cacheMode(getCacheMode());
+            request.headers(getHeaderMap()).tag(getTag()).cacheKey(getCacheKey()).cacheMode(getCacheMode());
             request.execute(getCallback());
 
 
@@ -215,7 +212,7 @@ public abstract class LibBaseJsonProtocol extends LibBaseProtocol {
         } catch (Exception e) {
             JLog.e(TAG, "Action failed: " + e.getMessage());
             if (!CheckUtil.isEmpty(myCallback)) {
-                myCallback.onFailure(false,null,null , e);
+                myCallback.onFailure(getTag(),false,null,null , e);
             }
         }
     }
@@ -262,13 +259,14 @@ public abstract class LibBaseJsonProtocol extends LibBaseProtocol {
     public void cancel() {
         cancel(true);
     }
+
     public void cancel(boolean showLog) {
-        if(showLog){
+        if (showLog) {
             JLog.d(TAG, "取消 url: " + getUrl() + "的接口");
         }
         isCancel = true;
-        if (null != uuid) {
-            OkGo.getInstance().cancelTag(uuid);
-        }
+
+        OkGo.getInstance().cancelTag(getTag());
+
     }
 }
