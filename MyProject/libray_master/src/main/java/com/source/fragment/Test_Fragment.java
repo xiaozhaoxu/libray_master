@@ -23,12 +23,19 @@ public class Test_Fragment extends BaseLibFragment {
     }
 
     @Override
-    protected void onUserVisible() {
+    public void onFirstUserVisible() {
 
     }
 
     @Override
-    protected void onUserINVisible() {
+    public void onUserVisible() {
 
     }
+
+    @Override
+    public void onUserInvisible() {
+
+    }
+
+
 }

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.jiongbull.jlog.JLog;
 import com.source.activity.BaseLibActivity;
 import com.source.util.JsonUtil;
 import com.source.widget.image.config.ViewSimpleTarget;
+import com.squareup.leakcanary.RefWatcher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,14 +36,36 @@ public class MainActivity extends BaseLibActivity {
     TextView tv;
 
 
+    private final Handler mHandler = new Handler();
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        RefWatcher refWatcher = App.getRefWatcher();
+        refWatcher.watch(this);
+
+    }
+
     @Override
     protected void initView(Bundle savedInstanceState) {
         setContentView(R.layout.content_main);
         ButterKnife.bind(this);
+
         PERMISSIONS = new String[]{
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
         };
-//改的baselibfragment
+
+//        //模拟内存泄露
+//        mHandler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        }, 3 * 60 * 1000);
+//        finish();
+
+
+//改的baselibfragment  --->用的LazyLoadFragment-master
 //        pagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(), mFragmentList,mTitleList);
 //        mViewpager.setAdapter(pagerAdapter);
 
