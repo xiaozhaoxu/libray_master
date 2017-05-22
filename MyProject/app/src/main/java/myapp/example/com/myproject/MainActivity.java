@@ -17,7 +17,6 @@ import com.jiongbull.jlog.JLog;
 import com.source.activity.BaseLibActivity;
 import com.source.util.JsonUtil;
 import com.source.widget.image.config.ViewSimpleTarget;
-import com.squareup.leakcanary.RefWatcher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +40,8 @@ public class MainActivity extends BaseLibActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        RefWatcher refWatcher = App.getRefWatcher();
-        refWatcher.watch(this);
+//        RefWatcher refWatcher = App.getRefWatcher();
+//        refWatcher.watch(this);
 
     }
 
