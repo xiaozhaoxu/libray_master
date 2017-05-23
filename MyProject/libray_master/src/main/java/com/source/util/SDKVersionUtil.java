@@ -11,5 +11,11 @@ public class SDKVersionUtil {
     public static final int JELLY_BEAN_MR1 = 17;
     public static final int JELLY_BEAN_MR2 = 18;
     public static final int KITKAT=19;
+    public static final int KITKAT_WATCH = 20;
+    public static final int LOLLIPOP = 21;
+    public static final int LOLLIPOP_MR1 = 22;
+    public static final int M = 23;
+    public static final int N = 24;
+    public static final int N_MR1 = 25;
 
 }

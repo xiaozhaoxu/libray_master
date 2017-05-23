@@ -1,7 +1,6 @@
 package com.source.util;
 
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -27,12 +26,33 @@ public class IntentUtil {
         intent.putExtra("sms_body", body);
         return intent;
     }
+    /**
+     * 获取跳至发送短信界面的意图
+     *
+     * @param phoneNumber 接收号码
+     * @param content     短信内容
+     */
+    public static Intent getSendSmsIntent(String phoneNumber, String content) {
+        Uri uri = Uri.parse("smsto:" + phoneNumber);
+        Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
+        intent.putExtra("sms_body", content);
+        return intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    }
 
     public static Intent getCallIntent(String number) {
         Intent intent = new Intent();
         intent.setAction("android.intent.action.CALL");
         intent.setData(Uri.parse("tel:" + number));
         return intent;
+    }
+    /**
+     * 获取跳至拨号界面意图
+     *
+     * @param phoneNumber 电话号码
+     */
+    public static Intent getDialIntent(String phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
+        return intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 
     public static Intent getWebIntent(String url) {
