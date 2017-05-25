@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -10,6 +9,11 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
     }
     buildTypes {
         release {
@@ -21,11 +25,7 @@ android {
     }
 }
 
-apt {
-    arguments {
-        moduleName project.getName();
-    }
-}
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -39,5 +39,5 @@ dependencies {
 
 
     compile 'com.alibaba:arouter-api:1.2.1.1'
-    apt 'com.alibaba:arouter-compiler:1.1.2.1'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.1.2.1'
 }
