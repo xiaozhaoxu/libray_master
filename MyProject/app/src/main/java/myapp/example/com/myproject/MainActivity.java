@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.fastjson.JSONObject;
 import com.bumptech.glide.Glide;
 import com.github.yoojia.inputs.AndroidNextInputs;
@@ -144,6 +145,17 @@ public class MainActivity extends BaseLibActivity {
                 .crossFade() //设置淡入淡出效果，默认300ms，可以传参
                 .bitmapTransform(new CropCircleTransformation(this))
                 .into(new ViewSimpleTarget(imageview));
+
+        ARouter.init(getApplication());
+        imageview.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                ARouter.getInstance()
+                        .build("/test/activity1")
+                        .navigation();
+            }
+        });
     }
 
     @Override
