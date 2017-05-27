@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="@dimen/x220"
+                android:layout_height="@dimen/x220"
+                android:background="@drawable/bg_loading_dialog"
+                android:orientation="vertical">
+
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="@dimen/x160"
+        android:layout_height="@dimen/x160"
+        android:indeterminateDrawable="@drawable/shape_loading"
+        android:layout_centerInParent="true"
+        android:indeterminateDuration="1000"
+        android:scrollbarFadeDuration="500"/>
+
+</RelativeLayout>

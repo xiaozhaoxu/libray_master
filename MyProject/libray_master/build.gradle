@@ -19,8 +19,9 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:support-v4:23.3.0'
-    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile project(':okgo')
+    compile 'com.android.support:support-v4:25.2.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:recyclerview-v7:23.1.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     //图片下载
@@ -35,7 +36,6 @@ dependencies {
         exclude module: 'support-v4'
     }
     compile 'com.nineoldandroids:library:2.4.0'
-    compile 'com.lzy.net:okgo:2.1.4'
     compile 'com.github.xiaozhaoxu:BaseRecyclerViewAdapterHelper:2.7.7'
     //  compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     //    compile ('me.imid.swipebacklayout.lib:library:1.0.0'){//https://github.com/ikew0ng/SwipeBackLayout

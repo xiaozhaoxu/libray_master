@@ -24,23 +24,24 @@ public class DownFileUtil {
     public void downLoad(String url ,String targetParent, String targetPath, final DownLoadCallBack callBack) {
         OkGo.get(url)
                 .execute(new FileCallback(targetParent,targetPath){
-
                     @Override
-                    public void onSuccess(File file, Call call, Response response) {
-                        callBack.onSucceed(file);
+                    public void onSuccess(File file, Call call, Response response, int id) {
+                        callBack.onSucceed(file,id);
                     }
 
                     @Override
-                    public void onError(Call call, Response response, Exception e) {
-                        callBack.onFail();
+                    public void onError(Call call, Response response, Exception e, int id) {
+                        callBack.onFail(id);
+                        super.onError(call, response, e, id);
                     }
+
                 });
 
     }
 
     public interface DownLoadCallBack {
-        void onFail();
+        void onFail( int id);
 
-        void onSucceed(File file);
+        void onSucceed(File file, int id);
     }
 }

@@ -24,6 +24,7 @@
     <color name="my_transparent">#00FFFFFF</color>
     <color name="spinner_bg_color">#ffee00</color>
 
-
+    <!-- 透明色 -->
+    <color name="transparent">#00000000</color>
    
 </resources>
