@@ -25,6 +25,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import hugo.weaving.DebugLog;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 
@@ -81,6 +82,8 @@ public class MainActivity extends BaseLibActivity {
         GroupTest gt= JsonUtil.json2Bean(js.toString(),GroupTest.class);
         JLog.d(js.toJSONString());
         JLog.json(js.toJSONString());
+
+        add(11,10);
 
 //        mSwipeBackLayout.addSwipeListener(new SwipeBackLayout.SwipeListener() {
 //            @Override
@@ -201,4 +204,14 @@ public class MainActivity extends BaseLibActivity {
     protected boolean permissionsFailed() {
         return false;
     }
+
+    @DebugLog
+    private int add(int a,int b){
+        int count=0;
+        for(int i=1;i<=a;i++){
+            count+=b;
+        }
+        return count;
+    }
+
 }
