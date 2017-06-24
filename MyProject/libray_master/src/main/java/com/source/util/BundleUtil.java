@@ -1,6 +1,9 @@
 package com.source.util;
 
 import android.os.Bundle;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 
 /**
  * Created by zhaoxu2014 on 15/7/30.
@@ -63,10 +66,16 @@ public class BundleUtil {
         return bundle.getBoolean(parm, deafult);
     }
 
-    public static Object getObjectFormBundle(Bundle bundle, String parm) {
+    public static Serializable getSerializableFormBundle(Bundle bundle, String parm) {
         if(null==bundle){
             return null;
         }
-        return bundle.get(parm);
+        return bundle.getSerializable(parm);
+    }
+    public static Parcelable getParcelableFormBundle(Bundle bundle, String parm) {
+        if(null==bundle){
+            return null;
+        }
+        return bundle.getParcelable(parm);
     }
 }
